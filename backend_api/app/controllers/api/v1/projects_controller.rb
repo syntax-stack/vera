@@ -15,10 +15,16 @@ module Api
       def create
         @project = Project.new(project_params)
 
-        if @project.save
-          render json: @project, status: :created
-        else
-          render json: { errors: @project.errors.full_messages }, status: :unprocessable_entity
+        Project.transaction do
+          if @project.save
+            @project.project_users.create!(user: current_user)
+
+            render json: @project, status: :created
+          else
+            render json: { errors: @project.errors.full_messages }, status: :unprocessable_entity
+          end
+        rescue ActiveRecord::RecordInvalid => e
+          render json: { errors: [ e.message ] }, status: :unprocessable_entity
         end
       end
 
