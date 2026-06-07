@@ -12,12 +12,15 @@ export function meta({}: Route.MetaArgs) {
 export default function Home() {
   return (
     <main className="flex flex-col items-center justify-center min-h-screen">
-      <h1>Vera's Homepage and Navigation</h1>
+      <h1 className="text-lg font-semibold"><span className="text-xl font-bold tracking-tighter">Vera&apos;s</span> Homepage and Navigation</h1>
 
       {/* TODO: This can be easily hidden with a is user logged in check in the future */}
-      <Link to="/login">
+      {/* <Link to="/login">
         <Button variant="link" size="lg">Link to login</Button>
-      </Link>
+      </Link> */}
+      <Button variant="link" disabled={true} asChild={true} size="lg">
+        <Link to="/login">Link to login</Link>
+      </Button>
 
       <Link to="/profile">
         <Button variant="link" size="lg">Link to profile</Button>
