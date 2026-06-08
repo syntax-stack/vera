@@ -43,7 +43,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const login = async (credentials: object) => {
-    const response = await fetch("http://localhost:3000/api/v1/login", {
+    const response = await fetch("http://localhost:3000/api/v1/sessions", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(credentials),
@@ -61,7 +61,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = async () => {
     try {
-      await fetch("http://localhost:3000/api/v1/logout", {
+      await fetch("http://localhost:3000/api/v1/sessions", {
         method: "DELETE",
         credentials: "include",
       });
