@@ -31,5 +31,6 @@ module BackendApi
 
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore, key: "_vera_session", expire_after: 1.day
+    config.middleware.use Rack::Attack
   end
 end

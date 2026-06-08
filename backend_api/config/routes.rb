@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      post "login", to: "sessions#create"
-      get "me", to: "sessions#show"
+      resources :sessions, only: [ :create, :show ]
 
       resources :projects do
         resources :issues, shallow: true
